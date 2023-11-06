@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { ReactComponent as ArrowLeft } from '../assets/arrow-left.svg'
-//import notes from '../assets/data'
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
 const Note = () => {
@@ -55,7 +54,7 @@ const Note = () => {
         deleteNote()
     } else if(id !== 'new'){
       updateNote()
-    } else if(id === 'new'){
+    } else if(id === 'new' && note.body != null && note.body.trim().length > 0 ){
       createNote()
     }
 
@@ -73,11 +72,10 @@ const Note = () => {
         { id !== 'new' ? (
             <button onClick={deleteNote}>Delete</button>
           ) : (
-            <button>Done</button>
+            <button onClick={handleSubmit}>Done</button>
           )
         }
         
-
       </div>
 
       <textarea onChange={(e) => { setNote({ ...note, 'body': e.target.value }) }} placeholder="Edit note" value={note.body}></textarea> 
